@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 import { Logger } from "logger-standard";
 import fs from "fs";
 
-SERVICE_NAME = "BrowserHandler";
+const SERVICE_NAME = "BrowserHandler";
 
 export default class BrowserHandler {
   constructor(downloadPath = null) {
@@ -39,7 +39,7 @@ export default class BrowserHandler {
         pipe: true,
         executablePath: "/usr/bin/google-chrome",
         args: ["--disable-setuid-sandbox", "--no-sandbox"],
-        slowMo: 30,
+        slowMo,
       });
 
       this._page = await this._browser.newPage();
