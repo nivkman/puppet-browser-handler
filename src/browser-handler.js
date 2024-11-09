@@ -22,8 +22,8 @@ export default class BrowserHandler {
         downloadPath: this.downloadPath,
       });
 
-      if (!fs.existsSync(downloadPath)) {
-        fs.mkdirSync(downloadPath, { recursive: true });
+      if (!fs.existsSync(this.downloadPath)) {
+        fs.mkdirSync(this.downloadPath, { recursive: true });
         this._logger.info("Downloads folder successfully created");
       }
       this._logger.info("Downloads folder configuration complete");

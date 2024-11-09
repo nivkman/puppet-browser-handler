@@ -1,6 +1,6 @@
 {
   "name": "puppet-browser-handler",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Node.js package that provides a convenient wrapper around Puppeteer for handling browser automation tasks. This package simplifies common browser operations like navigation, downloads management, screenshots, and page interactions.",
   "main": "src/index.js",
   "type": "module",
