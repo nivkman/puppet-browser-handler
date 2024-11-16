@@ -153,9 +153,19 @@ export default class BrowserHandler {
     }
   }
 
+  async getElementHrefLinks(selector) {
+    try {
+      let $ = await this._page.content();
+      $ = cheerio.load($);
+      return await $(selector)
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async elementExists(selector, timeout = 5000) {
     try {
-      await page.waitForSelector(selector, {
+      await this._page.waitForSelector(selector, {
         visible: true,
         timeout,
       });
