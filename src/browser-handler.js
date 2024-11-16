@@ -153,11 +153,45 @@ export default class BrowserHandler {
     }
   }
 
-  async getElementHrefLinks(selector) {
+  async getElementsHrefLink(elements) {
+    try {
+      const links = [];
+      let $ = await this._page.content();
+      $ = cheerio.load($);
+      for (const elm of $(elements)) {
+        const link = $(elm).attr("href");
+        if (link) {
+          links.push(link);
+        }
+      }
+      return links;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getElementBySelector(selector) {
+    try {
+      if (!this.elementExists(selector)) {
+        throw new Error("The element cannot be found.");
+      }
+      let $ = await this._page.content();
+      $ = cheerio.load($);
+      let element = $(selector);
+      if (element.length > 1) {
+        element = element[0];
+      }
+      return element;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getElementsBySelector(selector) {
     try {
       let $ = await this._page.content();
       $ = cheerio.load($);
-      return await $(selector)
+      return await $(selector);
     } catch (error) {
       throw error;
     }
@@ -173,6 +207,10 @@ export default class BrowserHandler {
     } catch (error) {
       return false;
     }
+  }
+
+  async isElementDisabled(element) {
+    return await element.evaluate((element) => element.disabled);
   }
 
   async openNewPage() {
